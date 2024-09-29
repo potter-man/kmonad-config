@@ -1,0 +1,29 @@
+layout:
+  qmk_keyboard: corne_rotated
+  qmk_layout: LAYOUT_split_3x6_3
+layers:
+  default:
+    - [{t: '↹', h: 'emacs-a'}, 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', {t: '[', h: 'emacs-a'}]
+    - [{t: '$$mdi:keyboard-esc$$', h: 'emacs-c'}, 'a', {t: 's', h: '$$mdi:apple-keyboard-control$$'}, {t: 'd', h: '$$mdi:apple-keyboard-option$$'}, {t: 'f', h: '$$mdi:apple-keyboard-command$$'}, 'g', 'h', {t: 'j', h: '$$mdi:apple-keyboard-command$$'}, {t: 'k', h: '$$mdi:apple-keyboard-option$$'}, {t: 'l', h: '$$mdi:apple-keyboard-control$$'}, ';', {t: "'", h: 'emacs-c'}]
+    - ['-', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '\']
+    - [{t: ',', h: 'num'}, {t: '$$mdi:keyboard-space$$', h: '$$mdi:apple-keyboard-shift$$'}, {t: '$$mdi:backspace-outline$$', h: '?', type: 'ghost'}, {t: '$$mdi:keyboard-return$$', h: '?', type: 'ghost'}, {t: '$$mdi:keyboard-space$$', h: '$$mdi:apple-keyboard-shift$$'}, {t: '.', h: 'sym'}]
+  num:
+    - [null, 'f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8', 'f9', 'f10', null]
+    - [null, '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', null]
+    - [null, 'f11', 'f12', null, '⌘[', '⌘{', '⌘}', '⌘]', ',', '.', null, null]
+    - [{type: 'held'}, null, {type: 'ghost'}, {type: 'ghost'}, null, null]
+  sym:
+    - ['`', '$$mdi:lightbulb-on-outline$$', '$$mdi:lightbulb-on$$', '$$mdi:view-dashboard$$', '$$mdi:magnify$$', '$$mdi:wall-sconce-flat-variant-outline$$', '$$mdi:wall-sconce-flat-variant$$', '$$mdi:skip-backward$$', '$$mdi:play-pause$$', '$$mdi:skip-forward$$', '$$mdi:volume-medium$$', '$$mdi:volume-high$$']
+    - ['~', '!', '@', '#', '$', '%', '^', '&', '*', '|', '_', '+']
+    - ['-', null, '<', '{', '[', '(', ')', ']', '}', '>', '-', '=']
+    - [null, null, {type: 'ghost'}, {type: 'ghost'}, null, {type: 'held'}]
+  emacs-c:
+    - [null, null, '$$mdi:content-cut$$', '$$mdi:keyboard-tab$$', '⇞', null, '$$mdi:content-paste$$', null, '↹', '↩↑', '$$mdi:arrow-up-thin$$', '$$mdi:keyboard-esc$$']
+    - [{type: 'held'}, '$$mdi:keyboard-tab-reverse$$', null, '$$mdi:backspace-reverse-outline$$', '$$mdi:arrow-right-thin$$', null, '$$mdi:backspace-outline$$', '$$mdi:keyboard-return$$', {t: '$$mdi:backspace-reverse-outline$$', s: '$$mdi:keyboard-tab$$'}, null, null, {type: 'held'}]
+    - [null, null, null, {t: '$$mdi:cursor-text$$', s: 'add down'}, '⇟', '$$mdi:arrow-left-thin$$', '$$mdi:arrow-down-thin$$', null, null, null, null, null]
+    - [null, null, {type: 'ghost'}, {type: 'ghost'}, null, null]
+  emacs-a:
+    - [{type: 'held'}, null, '$$mdi:content-copy$$', null, null, null, null, null, null, null, {t: '$$mdi:arrow-up-thin$$', s: '$$mdi:apple-keyboard-option$$'}, {type: 'held'}]
+    - [null, null, null, {t: '$$mdi:backspace-reverse-outline$$', s: 'word'}, {t: '$$mdi:arrow-right-thin$$', s: 'word'}, null, {t: '$$mdi:backspace-outline$$', s: 'word'}, null, {t: '$$mdi:backspace-outline$$', s: '$$mdi:keyboard-tab-reverse$$'}, null, null, null]
+    - [null, null, null, null, '⇞', {t: '$$mdi:arrow-left-thin$$', s: 'word'}, {t: '$$mdi:arrow-down-thin$$', s: '$$mdi:apple-keyboard-option$$'}, null, null, null, null, null]
+    - [null, null, {type: 'ghost'}, {type: 'ghost'}, null, null]

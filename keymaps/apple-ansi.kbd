@@ -1,0 +1,121 @@
+(defcfg
+  input (iokit-name)
+  output (kext)
+  fallthrough true
+)
+
+(defsrc
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft up
+  fn   lctl lalt lmet           spc            rmet ralt left down rght
+)
+
+(defalias
+  upv M-[   ;; cmd+[ is back in history
+  upb M-{   ;; cmd+shift+[ is back tab
+  upn M-}   ;; cmd+shift+] is forward tab
+  upm M-]   ;; cmd+] is forward in history
+  upc C-A-, ;; ctrl+opt+, is always ,
+  upp C-A-. ;; ctrl+opt+. is always .
+
+  fn (around (layer-toggle function) fn) ;; for compatibility with fn+[qeacnm]
+  
+  ;; hold-tap shift on spacebar
+  hss (tap-hold-next-release 500 spc lsft)
+
+  ;; hold-tap layers
+  lea (tap-hold-next-release 150 tab (layer-toggle emacs-a))
+  rea (tap-hold-next-release 150 [ (layer-toggle emacs-a))
+  lec (tap-hold-next-release 150 esc (layer-toggle emacs-c))
+  rec (tap-hold-next-release 150 ' (layer-toggle emacs-c))
+  num (tap-hold-next-release 150 @upc (layer-toggle num))
+  sym (tap-hold-next-release 150 @upp (layer-toggle symbols))
+
+  ;; home row mods
+  hrs (tap-hold 250 s lctl)
+  hrd (tap-hold 250 d lalt)
+  hrf (tap-hold 250 f lmet)
+  hrj (tap-hold 250 j rmet)
+  hrk (tap-hold 250 k ralt)
+  hrl (tap-hold 250 l rctl)
+
+  ;; emacs Control
+  cut M-x
+  eol M-rght
+  ynk M-v
+  ol (tap-macro ret up end)
+  bol M-left
+  kle M-del
+  acd M-A-down ;; add cursor down (vscode multicursor)
+
+  ;; emacs Alt
+  cp M-c
+  dw A-del
+  bsw A-bspc
+  lw A-left
+  da A-down
+  ua A-up
+  rw A-rght
+  kla M-bspc
+)
+
+;; all layers are restricted in key usage for compatibility with the 40% layout
+(deflayer default
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  @lea _    _    _    _    _    _    _    _    _    _    @rea _    _
+  @lec _    @hrs @hrd @hrf _    _    @hrj @hrk @hrl _    @rec _
+  -    _    _    _    _    _    _    _    _    _    _    \\    _
+  @fn  _    _    @num           @hss           @sym _    _    _    _
+)
+
+(deflayer num
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  _    _    _
+  _    1    2    3    4    5    6    7    8    9    0    _    _
+  _    f11  f12  _    @upv @upb @upn @upm @upc @upp _    _    _
+  _    _    _    _              _              _    _    _    _    _
+)
+
+;; mute is omitted for lack of use
+;; | is added for ease of typing the || and the position is due to the similarity to l(L)
+;; the brackets are arranged mirrored so that the "ъ" sign in Cyrillic is in place of "ь"
+(deflayer symbols
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  grv  brdn brup mctl spot bldn blup prev pp   next vold volu _    _
+  ~    !    @    #    $    %    ^    &    *    |    \_   =    _
+  _    _    <    {    [    \(   \)   ]    }    >    -    +    _
+  _    _    _    _              _              _    _    _    _    _
+)
+
+(deflayer emacs-c
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    @cut @eol pgup _    @ynk _    tab  @ol  up   esc  _    _
+  _    @bol _    del  rght _    bspc ret  @kle _    _    _    _
+  _    _    _    @acd pgdn left down _    _    _    _    _    _
+  _    _    _    _              _              _    _    _    _    _
+)
+
+(deflayer emacs-a
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    @cp  _    _    _    _    _    _    _    @ua  _    _    _
+  _    _    _    @dw  @rw  _    @bsw _    @kla _    _    _    _
+  _    _    _    _    pgup @lw  @da  _    _    _    _    _    _
+  _    _    _    _              _              _    _    _    _    _
+)
+
+(deflayer function
+  _    brdn brup mctl spot bldn blup prev pp   next mute vold volu
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _              _              _    _    _    _    _
+)
